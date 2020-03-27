@@ -18,7 +18,7 @@ export default new Router({
       name: '作业管理',
       component: Layout,
       redirect: '/homes/homes',
-      meta: {title: '作业管理', icon: 'fa fa-tasks'},
+      meta: {title: 'e', icon: 'slack'},
       children: [{
         path: 'homes',
         name: '排程操作平台',

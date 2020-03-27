@@ -3,24 +3,40 @@
     :trigger="null"
     collapsible
     :theme="theme"
-    v-model="collapsed">
+    v-model="collapsed"
+    :class="sidebarClass">
     <div class="logo">
-      <h2 style="color: white;" v-if="!collapsed">My Ant Deign</h2>
+      <img src="@/../static/logo.png" width="40" height="40">
+      <span class="log-class" v-if="!collapsed">Task Aps</span>
     </div>
-    <sidebar-item
-      :menu="routes"
+    <a-menu
+      mode="inline"
       :theme="theme"
-      :collapsed="collapsed"></sidebar-item>
+      @click="toRouter"
+      :inlineCollapsed="collapsed">
+      <template v-for="item in routes">
+        <a-menu-item v-if="!item.children" :key="item.path">
+          <a-icon :type="item.meta.icon"/>
+          <span>{{item.meta.title}}</span>
+        </a-menu-item>
+        <sub-menu v-else :menu-info="item" :key="item.path"/>
+      </template>
+    </a-menu>
   </a-layout-sider>
 </template>
+
 <script>
-  import SidebarItem from './SidebarItem'
+  import SubMenu from './SubMenu'
 
   export default {
     components: {
-      SidebarItem
+      'sub-menu': SubMenu,
     },
     props: {
+      theme: {
+        type: String,
+        default: "dark"
+      },
       collapsed: {
         type: Boolean,
         default: false
@@ -28,12 +44,21 @@
     },
     data() {
       return {
-        theme: "dark"
+        sidebarClass: "sidebar-class"
+      }
+    },
+    watch: {
+      collapsed(val, newVal) {
+        if (!newVal) {
+          this.sidebarClass = "collapsed-class";
+        } else {
+          this.sidebarClass = "sidebar-class";
+        }
       }
     },
     methods: {
-      toRoute(item) {
-
+      toRouter(item) {
+        this.$router.push(item.key);
       }
     },
     computed: {
@@ -44,10 +69,30 @@
   };
 </script>
 <style scoped>
-  .sidebar-class .logo {
+  .sidebar-class {
+    flex: 0 0 256px !important;
+    max-width: 256px !important;
+    min-width: 256px !important;
+    width: 256px !important;
+  }
+
+  .collapsed-class {
+    flex: 0 0 80px !important;
+    max-width: 80px !important;
+    min-width: 80px !important;
+    width: 80px !important;
+  }
+
+  .logo {
+    padding-left: 20px;
     height: 64px;
-    padding: 16px;
+    line-height: 64px;
     background-color: #002140;
   }
 
+  .log-class {
+    font-size: 20px;
+    color: white;
+    padding: 5px 0 0 0;
+  }
 </style>

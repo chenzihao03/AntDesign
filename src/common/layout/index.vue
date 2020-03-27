@@ -1,5 +1,5 @@
 <template>
-  <a-layout class="sidebar-class">
+  <a-layout class="container-class">
     <sidebar :collapsed="collapsed"></sidebar>
     <a-layout>
       <navbar
@@ -21,8 +21,7 @@
     },
     data() {
       return {
-        top: 10,
-        collapsed: false,
+        collapsed: false
       };
     },
     methods: {
@@ -34,7 +33,7 @@
 </script>
 
 <style scoped>
-  .sidebar-class {
+  .container-class {
     height: 100%;
   }
 </style>

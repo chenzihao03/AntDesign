@@ -12,6 +12,7 @@
   "dependencies": {
     "ant-design-vue": "^1.4.12",
     "vue": "^2.5.2",
+    "vue-fragment": "^1.5.1",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {

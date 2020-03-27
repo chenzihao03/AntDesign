@@ -30,7 +30,7 @@
   };
 </script>
 <style scoped>
-  .sidebar-class .trigger {
+  .container-class .trigger {
     font-size: 18px;
     line-height: 64px;
     padding: 0 24px;
@@ -38,7 +38,7 @@
     transition: color 0.3s;
   }
 
-  .sidebar-class .trigger:hover {
+  .container-class .trigger:hover {
     background: rgba(0, 0, 0, .025);
   }
 </style>
