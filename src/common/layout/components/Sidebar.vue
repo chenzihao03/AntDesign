@@ -15,11 +15,11 @@
       @click="toRouter"
       :inlineCollapsed="collapsed">
       <template v-for="item in routes">
-        <a-menu-item v-if="!item.children" :key="item.path">
-          <a-icon :type="item.meta.icon"/>
+        <a-menu-item v-if="!item.children && !item.hidden" :key="item.path">
+          <i :class="item.meta.icon"/>
           <span>{{item.meta.title}}</span>
         </a-menu-item>
-        <sub-menu v-else :menu-info="item" :key="item.path"/>
+        <sub-menu v-if="item.children && !item.hidden" :menu-info="item" :key="item.path"/>
       </template>
     </a-menu>
   </a-layout-sider>
@@ -69,6 +69,11 @@
   };
 </script>
 <style scoped>
+  i {
+    font-size: 15px;
+    padding-right: 10px;
+  }
+
   .sidebar-class {
     flex: 0 0 256px !important;
     max-width: 256px !important;

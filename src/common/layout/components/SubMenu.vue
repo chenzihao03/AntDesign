@@ -1,14 +1,15 @@
 <template>
   <a-sub-menu :key="menuInfo.path" v-bind="$props" v-on="$listeners">
         <span slot="title">
-          <a-icon type="mail"/><span>{{ menuInfo.meta.title }}</span>
+          <i :class="menuInfo.meta.icon"/>
+          <span>{{ menuInfo.meta.title }}</span>
         </span>
     <template v-for="item in menuInfo.children">
-      <a-menu-item v-if="!item.children" :key="item.path">
-        <a-icon :type="item.meta.icon"/>
+      <a-menu-item v-if="!item.children && !item.hidden" :key="item.path">
+        <i :class="item.meta.icon"/>
         <span>{{ item.meta.title }}</span>
       </a-menu-item>
-      <sub-menu v-else :key="item.name" :menu-info="item"/>
+      <sub-menu v-if="item.children && !item.hidden" :key="item.name" :menu-info="item"/>
     </template>
   </a-sub-menu>
 </template>
@@ -27,3 +28,10 @@
     }
   }
 </script>
+
+<style scoped>
+  i {
+    font-size: 15px;
+    padding-right: 10px;
+  }
+</style>

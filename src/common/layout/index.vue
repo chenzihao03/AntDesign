@@ -1,6 +1,6 @@
 <template>
   <a-layout class="container-class">
-    <sidebar :collapsed="collapsed"></sidebar>
+    <sidebar :collapsed="collapsed" :theme="theme"></sidebar>
     <a-layout>
       <navbar
         :collapsed="collapsed"
@@ -21,7 +21,8 @@
     },
     data() {
       return {
-        collapsed: false
+        collapsed: false,
+        theme: "dark"
       };
     },
     methods: {
