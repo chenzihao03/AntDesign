@@ -5,16 +5,20 @@
     :theme="theme"
     v-model="collapsed"
     :class="sidebarClass">
-    <div class="logo">
-      <img src="@/../static/logo.png" width="40" height="40">
-      <span class="log-class" v-if="!collapsed">Task Aps</span>
-    </div>
+    <a-row class="logo" align="middle">
+      <a-col :span="5">
+        <img src="@/../static/logo.png" width="40" height="40">
+      </a-col>
+      <a-col :span="19">
+        <h1 class="log-class" v-if="!collapsed">制造执行系统</h1>
+      </a-col>
+    </a-row>
     <a-menu
       mode="inline"
       :theme="theme"
       @click="toRouter"
       :inlineCollapsed="collapsed">
-      <template v-for="item in routes">
+      <template v-for="item in routes" v-if="!item.hidden">
         <a-menu-item v-if="!item.children" :key="item.path">
           <a-icon :type="item.meta.icon"/>
           <span>{{item.meta.title}}</span>
@@ -69,11 +73,18 @@
   };
 </script>
 <style scoped>
+  * {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+  }
+
   .sidebar-class {
     flex: 0 0 256px !important;
     max-width: 256px !important;
     min-width: 256px !important;
     width: 256px !important;
+    box-shadow: 2px 0 6px rgba(0, 21, 41, .35);
   }
 
   .collapsed-class {
@@ -91,8 +102,8 @@
   }
 
   .log-class {
-    font-size: 20px;
+    font-size: 14px;
+    font-weight: 600;
     color: white;
-    padding: 5px 0 0 0;
   }
 </style>

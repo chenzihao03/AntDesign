@@ -27,3 +27,10 @@
     }
   }
 </script>
+<style>
+  * {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+  }
+</style>
