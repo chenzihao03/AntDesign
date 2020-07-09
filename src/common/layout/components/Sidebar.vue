@@ -3,21 +3,21 @@
     :trigger="null"
     collapsible
     :theme="theme"
-    v-model="collapsed"
+    v-model="siderCollapsed"
     :class="sidebarClass">
-    <a-row class="logo" align="middle">
+    <a-row class="logo" type="flex" justify="end">
       <a-col :span="5">
         <img src="@/../static/logo.png" width="40" height="40">
       </a-col>
-      <a-col :span="19">
-        <h1 class="log-class" v-if="!collapsed">制造执行系统</h1>
+      <a-col :span="17">
+        <h1 class="log-class" v-if="!siderCollapsed">制造执行系统</h1>
       </a-col>
     </a-row>
     <a-menu
-      mode="inline"
+      :mode="model"
       :theme="theme"
       @click="toRouter"
-      :inlineCollapsed="collapsed">
+      :inlineCollapsed="siderCollapsed">
       <template v-for="item in routes" v-if="!item.hidden">
         <a-menu-item v-if="!item.children" :key="item.path">
           <a-icon :type="item.meta.icon"/>
@@ -41,18 +41,13 @@
         type: String,
         default: "dark"
       },
-      collapsed: {
-        type: Boolean,
-        default: false
-      }
-    },
-    data() {
-      return {
-        sidebarClass: "sidebar-class"
+      model: {
+        type: String,
+        default: "inline"
       }
     },
     watch: {
-      collapsed(val, newVal) {
+      siderCollapsed(val, newVal) {
         if (!newVal) {
           this.sidebarClass = "collapsed-class";
         } else {
@@ -68,6 +63,16 @@
     computed: {
       routes() {
         return this.$router.options.routes
+      },
+      siderCollapsed() {
+        return this.$store.state.siderCollapsed
+      },
+      sidebarClass() {
+        if (this.$store.state.siderCollapsed) {
+          return "collapsed-class";
+        } else {
+          return "sidebar-class";
+        }
       }
     }
   };
@@ -80,10 +85,10 @@
   }
 
   .sidebar-class {
-    flex: 0 0 256px !important;
-    max-width: 256px !important;
-    min-width: 256px !important;
-    width: 256px !important;
+    flex: 0 0 199px !important;
+    max-width: 199px !important;
+    min-width: 199px !important;
+    width: 199px !important;
     box-shadow: 2px 0 6px rgba(0, 21, 41, .35);
   }
 
@@ -95,7 +100,6 @@
   }
 
   .logo {
-    padding-left: 20px;
     height: 64px;
     line-height: 64px;
     background-color: #002140;

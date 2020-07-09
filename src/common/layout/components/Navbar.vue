@@ -1,30 +1,35 @@
 <template>
   <a-layout-header style="background: #fff; padding: 0">
-    <a-icon
-      class="trigger"
-      :type="sidebarShow ? 'menu-unfold' : 'menu-fold'"
-      @click="setSidebarShow"
-    />
+    <a-row>
+      <a-col :span="21">
+        <a-icon
+          class="trigger"
+          :type="siderCollapsed ? 'menu-unfold' : 'menu-fold'"
+          @click="setSidebarShow"
+        />
+      </a-col>
+      <a-col :span="3" class="triggers">
+        <avatar-menu></avatar-menu>
+      </a-col>
+    </a-row>
   </a-layout-header>
 </template>
 
 <script>
+  import AvatarMenu from './AvatarMenu'
+
   export default {
-    props: {
-      collapsed: {
-        type: Boolean,
-        default: false
-      }
-    },
-    data() {
-      return {
-        sidebarShow: this.collapsed
-      };
+    components: {
+      'avatar-menu': AvatarMenu,
     },
     methods: {
       setSidebarShow(val) {
-        this.sidebarShow = !this.sidebarShow;
-        this.$emit('setCollapsed', this.sidebarShow);
+        this.$store.commit('setSiderCollapsed', !this.siderCollapsed);
+      }
+    },
+    computed: {
+      siderCollapsed() {
+        return this.$store.state.siderCollapsed
       }
     }
   };
@@ -39,6 +44,17 @@
   }
 
   .container-class .trigger:hover {
+    background: rgba(0, 0, 0, .025);
+  }
+
+  /*.container-class .triggers {*/
+  /*  line-height: 64px;*/
+  /*  padding: 0 10px;*/
+  /*  cursor: pointer;*/
+  /*  transition: color 0.3s;*/
+  /*}*/
+
+  .container-class .triggers:hover {
     background: rgba(0, 0, 0, .025);
   }
 </style>

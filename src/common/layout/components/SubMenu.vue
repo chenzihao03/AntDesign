@@ -27,7 +27,7 @@
     }
   }
 </script>
-<style>
+<style scoped>
   * {
     font-size: 14px;
     font-weight: 600;

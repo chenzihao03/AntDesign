@@ -1,32 +1,35 @@
 <template>
-  <a-layout class="container-class">
-    <sidebar :collapsed="collapsed"></sidebar>
-    <a-layout>
-      <navbar
-        :collapsed="collapsed"
-        @setCollapsed="setCollapsed"></navbar>
+  <div class="container-class">
+    <a-layout class="container-class" v-if="menuModel === 'inline'">
+      <sidebar :collapsed="siderCollapsed"></sidebar>
+      <a-layout>
+        <navbar></navbar>
+        <app-main></app-main>
+      </a-layout>
+    </a-layout>
+    <a-layout class="container-class" v-if="menuModel === 'horizontal'">
+      <sidebar-top model="horizontal"></sidebar-top>
       <app-main></app-main>
     </a-layout>
-  </a-layout>
+  </div>
 </template>
 
 <script>
-  import {Navbar, Sidebar, AppMain} from './components'
+  import {Navbar, Sidebar, AppMain, SidebarTop} from './components'
 
   export default {
     components: {
       Navbar,
       Sidebar,
-      AppMain
+      AppMain,
+      SidebarTop
     },
-    data() {
-      return {
-        collapsed: false
-      };
-    },
-    methods: {
-      setCollapsed(event) {
-        this.collapsed = event;
+    computed: {
+      menuModel() {
+        return this.$store.state.menuModel
+      },
+      siderCollapsed() {
+        return this.$store.state.siderCollapsed
       }
     }
   };
