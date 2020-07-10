@@ -23,7 +23,7 @@ export default new Router({
       children: [{
         path: 'homes',
         name: '排程操作平台',
-        component: () => import('@/components/HelloWorld'),
+        component: () => import('@/model/aps/apsregular'),
         meta: {title: '123', icon: 'slack'}
       }]
     }, {
@@ -35,7 +35,7 @@ export default new Router({
       children: [{
         path: 'homes',
         name: '测试',
-        component: () => import('@/components/HelloWorld'),
+        component: () => import('@/model/aps/apsdispatch'),
         meta: {title: '测试', icon: 'slack'}
       }]
     }
