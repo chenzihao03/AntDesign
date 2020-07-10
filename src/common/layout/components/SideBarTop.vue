@@ -16,7 +16,8 @@
           <a-menu
             :mode="model"
             :theme="theme"
-            @click="toRouter">
+            @click="toRouter"
+            :default-selected-keys="[this.$route.path]">
             <template v-for="item in routes" v-if="!item.hidden">
               <a-menu-item v-if="!item.children" :key="item.path">
                 <a-icon :type="item.meta.icon"/>

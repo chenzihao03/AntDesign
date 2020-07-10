@@ -5,19 +5,21 @@
     :theme="theme"
     v-model="siderCollapsed"
     :class="sidebarClass">
-    <a-row class="logo" type="flex" justify="end">
-      <a-col :span="5">
+    <a-row class="logo" type="flex" justify="center">
+      <a-col :span="siderCollapsed ? 13 : 5">
         <img src="@/../static/logo.png" width="40" height="40">
       </a-col>
-      <a-col :span="17">
-        <h1 class="log-class" v-if="!siderCollapsed">制造执行系统</h1>
+      <a-col :span="17" v-if="!siderCollapsed">
+        <h1 class="log-class">制造执行系统</h1>
       </a-col>
     </a-row>
     <a-menu
       :mode="model"
       :theme="theme"
       @click="toRouter"
-      :inlineCollapsed="siderCollapsed">
+      :inlineCollapsed="siderCollapsed"
+      :default-selected-keys="[this.$route.path]"
+      :default-open-keys="[this.$route.matched[0].path]">
       <template v-for="item in routes" v-if="!item.hidden">
         <a-menu-item v-if="!item.children" :key="item.path">
           <a-icon :type="item.meta.icon"/>
@@ -44,15 +46,6 @@
       model: {
         type: String,
         default: "inline"
-      }
-    },
-    watch: {
-      siderCollapsed(val, newVal) {
-        if (!newVal) {
-          this.sidebarClass = "collapsed-class";
-        } else {
-          this.sidebarClass = "sidebar-class";
-        }
       }
     },
     methods: {

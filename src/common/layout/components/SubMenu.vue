@@ -4,7 +4,7 @@
           <a-icon type="mail"/><span>{{ menuInfo.meta.title }}</span>
         </span>
     <template v-for="item in menuInfo.children">
-      <a-menu-item v-if="!item.children" :key="item.path">
+      <a-menu-item v-if="!item.children" :key="menuInfo.path + '/' + item.path">
         <a-icon :type="item.meta.icon"/>
         <span>{{ item.meta.title }}</span>
       </a-menu-item>
