@@ -7,6 +7,7 @@ const state = {
   user: window.sessionStorage.getItem('user'),
   token: window.sessionStorage.getItem('token'),
   menuModel: "inline",
+  menuTheme: "dark",
   siderCollapsed: false
 };
 
@@ -33,9 +34,12 @@ const mutations = {
   setMenuModel: (state, data) => {
     state.menuModel = data;
   },
+  setMenuTheme: (state, data) => {
+    state.menuTheme = data;
+  },
   setSiderCollapsed: (state, data) => {
     state.siderCollapsed = data;
-  },
+  }
 };
 
 const actions = {};

@@ -32,19 +32,37 @@
       :closable="false"
       :visible="visible"
       @close="onClose">
-      <h2>导航模式</h2>
+      <h3>整体风格</h3>
       <a-row>
         <a-col :span="8">
-          <img src="@/../static/img/sider.svg" width="50" height="50" @click="setMenuModel('inline')"/>
-          <div :class="checkClass" v-if="menuModel === 'inline'">
-            <a-icon type="check"/>
+          <div>
+            <img src="@/../static/img/moon.svg" width="50" height="50" @click="setMenuTheme('dark')"/>
+            <a-icon type="check" :class="checkClass" v-if="menuTheme === 'dark'"/>
           </div>
         </a-col>
         <a-col :span="8">
+          <img src="@/../static/img/sun.svg" width="50" height="50" @click="setMenuTheme('light')"/>
+          <a-icon type="check" :class="checkClass" v-if="menuTheme === 'light'"/>
+        </a-col>
+      </a-row>
+      <br>
+      <h3>主题颜色</h3>
+      <a-row style="height:20px;">
+        <a-col class="color-class" v-for="(item,index) in colorList" :key="index" :span="3" :offset="1"
+               @click="setMenuColor('light')" :style="{ backgroundColor : item.color }">
+          <a-icon type="check" :class="checkColor"/>
+        </a-col>
+      </a-row>
+      <a-divider/>
+      <h3>导航模式</h3>
+      <a-row>
+        <a-col :span="8">
+          <img src="@/../static/img/sider.svg" width="50" height="50" @click="setMenuModel('inline')"/>
+          <a-icon type="check" :class="checkClass" v-if="menuModel === 'inline'"/>
+        </a-col>
+        <a-col :span="8">
           <img src="@/../static/img/header.svg" width="50" height="50" @click="setMenuModel('horizontal')"/>
-          <div :class="checkClass" v-if="menuModel === 'horizontal'">
-            <a-icon type="check"/>
-          </div>
+          <a-icon type="check" :class="checkClass" v-if="menuModel === 'horizontal'"/>
         </a-col>
       </a-row>
     </a-drawer>
@@ -56,12 +74,32 @@
     data() {
       return {
         visible: false,
-        checkClass: "check-class"
+        checkClass: "check-class",
+        checkColor: "check-color",
+        colorList: [{
+          name: '拂晓蓝',
+          color: '#1a91ff'
+        }, {
+          name: '清新绿',
+          color: '#53c41c'
+        }, {
+          name: '薄暮红',
+          color: '#f5242f'
+        }, {
+          name: '极客蓝',
+          color: '#3155eb'
+        }]
       }
     },
     methods: {
       setMenuModel(menuModel) {
         this.$store.commit('setMenuModel', menuModel);
+      },
+      setMenuTheme(menuTheme) {
+        this.$store.commit('setMenuTheme', menuTheme);
+      },
+      setMenuColor(menuColor) {
+        this.$store.commit('setMenuTheme', menuColor);
       },
       handleMenuClick(e) {
         if (e.key == "onChange") {
@@ -75,6 +113,9 @@
     computed: {
       menuModel() {
         return this.$store.state.menuModel
+      },
+      menuTheme() {
+        return this.$store.state.menuTheme
       }
     }
   }
@@ -88,5 +129,27 @@
     position: absolute;
     top: 20px;
     right: 30px;
+    font-size: 14px;
+  }
+
+  .check-color {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border-color: transparent;
+  }
+
+  .color-class {
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: 8px;
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    border-color: transparent;
+    text-align: center;
   }
 </style>

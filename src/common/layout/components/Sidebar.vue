@@ -2,24 +2,26 @@
   <a-layout-sider
     :trigger="null"
     collapsible
-    :theme="theme"
+    :theme="menuTheme"
     v-model="siderCollapsed"
     :class="sidebarClass">
-    <a-row class="logo" type="flex" justify="center">
+    <a-row class="logo" type="flex" justify="center"
+           :style="{backgroundColor: menuTheme === 'dark' ? '#02172b' : '#FFFFFF'}">
       <a-col :span="siderCollapsed ? 13 : 5">
         <img src="@/../static/logo.png" width="40" height="40">
       </a-col>
       <a-col :span="17" v-if="!siderCollapsed">
-        <h1 class="log-class">制造执行系统</h1>
+        <h1 class="log-class" :style="{color: menuTheme === 'dark' ? '#FFFFFF' : '#000000'}">制造执行系统</h1>
       </a-col>
     </a-row>
     <a-menu
       :mode="model"
-      :theme="theme"
+      :theme="menuTheme"
       @click="toRouter"
       :inlineCollapsed="siderCollapsed"
       :default-selected-keys="[this.$route.path]"
-      :default-open-keys="[this.$route.matched[0].path]">
+      :default-open-keys="[this.$route.matched[0].path]"
+      :style="{color: menuTheme === 'dark' ? '#FFFFFF' : '#000000'}">
       <template v-for="item in routes" v-if="!item.hidden">
         <a-menu-item v-if="!item.children" :key="item.path">
           <a-icon :type="item.meta.icon"/>
@@ -66,6 +68,9 @@
         } else {
           return "sidebar-class";
         }
+      },
+      menuTheme() {
+        return this.$store.state.menuTheme
       }
     }
   };
@@ -74,7 +79,6 @@
   * {
     font-size: 14px;
     font-weight: 600;
-    color: white;
   }
 
   .sidebar-class {
@@ -95,12 +99,10 @@
   .logo {
     height: 64px;
     line-height: 64px;
-    background-color: #002140;
   }
 
   .log-class {
     font-size: 14px;
     font-weight: 600;
-    color: white;
   }
 </style>

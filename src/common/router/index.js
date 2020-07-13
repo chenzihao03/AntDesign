@@ -23,12 +23,12 @@ export const constantRoutes = [{
     path: 'schedule',
     name: '排程操作平台',
     component: () => import('@/model/aps/apsschedule'),
-    meta: {title: '排程操作平台', icon: 'slack'}
+    meta: {title: '排程操作平台'}
   }, {
     path: 'dispatch',
     name: '排程任务指派',
     component: () => import('@/model/aps/apsdispatch'),
-    meta: {title: '排程任务指派', icon: 'slack'}
+    meta: {title: '排程任务指派'}
   }]
 }, {
   path: '/my',
@@ -40,7 +40,7 @@ export const constantRoutes = [{
     path: 'homes',
     name: '测试',
     component: () => import('@/model/aps/apsregular'),
-    meta: {title: '测试', icon: 'slack'}
+    meta: {title: '测试'}
   }]
 }];
 

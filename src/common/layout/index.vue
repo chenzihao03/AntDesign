@@ -8,7 +8,7 @@
       </a-layout>
     </a-layout>
     <a-layout class="container-class" v-if="menuModel === 'horizontal'">
-      <sidebar-top model="horizontal"></sidebar-top>
+      <sidebar-top></sidebar-top>
       <app-main></app-main>
     </a-layout>
   </div>

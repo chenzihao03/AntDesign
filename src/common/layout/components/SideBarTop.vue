@@ -1,12 +1,13 @@
 <template>
-  <a-row class="logo">
+  <a-row class="logo" :style="{backgroundColor: menuTheme === 'dark' ? '#02172b' : '#FFFFFF'}">
     <a-col :span="3">
       <a-row type="flex" justify="end">
         <a-col :span="5">
           <img src="@/../static/logo.png" width="40" height="40">
         </a-col>
         <a-col :span="17">
-          <h1 class="log-class" v-if="!collapsed">制造执行系统</h1>
+          <h1 class="log-class" v-if="!collapsed"
+              :style="{color: menuTheme === 'dark' ? '#FFFFFF' : '#000000'}">制造执行系统</h1>
         </a-col>
       </a-row>
     </a-col>
@@ -14,10 +15,11 @@
       <a-row>
         <a-col :span="21">
           <a-menu
-            :mode="model"
-            :theme="theme"
+            :mode="menuModel"
+            :theme="menuTheme"
             @click="toRouter"
-            :default-selected-keys="[this.$route.path]">
+            :default-selected-keys="[this.$route.path]"
+            :style="{color: menuTheme === 'dark' ? '#FFFFFF' : '#000000'}">
             <template v-for="item in routes" v-if="!item.hidden">
               <a-menu-item v-if="!item.children" :key="item.path">
                 <a-icon :type="item.meta.icon"/>
@@ -28,7 +30,7 @@
           </a-menu>
         </a-col>
         <a-col :span="3">
-          <avatar-menu></avatar-menu>
+          <avatar-menu :style="{color: menuTheme === 'dark' ? '#FFFFFF' : '#000000'}"></avatar-menu>
         </a-col>
       </a-row>
     </a-col>
@@ -45,17 +47,9 @@
       'avatar-menu': AvatarMenu
     },
     props: {
-      theme: {
-        type: String,
-        default: "dark"
-      },
       collapsed: {
         type: Boolean,
         default: false
-      },
-      model: {
-        type: String,
-        default: "inline"
       }
     },
     data() {
@@ -85,6 +79,12 @@
     computed: {
       routes() {
         return this.$router.options.routes
+      },
+      menuModel() {
+        return this.$store.state.menuModel
+      },
+      menuTheme() {
+        return this.$store.state.menuTheme
       }
     }
   };
@@ -94,18 +94,15 @@
     font-size: 14px;
     font-weight: 600;
     line-height: 64px;
-    color: white;
   }
 
   .logo {
     height: 64px;
     line-height: 64px;
-    background-color: #02172b;
   }
 
   .log-class {
     font-size: 14px;
     font-weight: 600;
-    color: white;
   }
 </style>
