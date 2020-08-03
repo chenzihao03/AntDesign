@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-dropdown>
-      <div>
+      <div class="trigger">
         <a-row type="flex" justify="end">
           <a-col :xs="22" :sm="22" :md="22" :lg="22" :xl="22" :xxl="5">
             <a-avatar icon="user" :size="32"
@@ -34,35 +34,58 @@
       @close="onClose">
       <h3>整体风格</h3>
       <a-row>
-        <a-col :span="8">
-          <div>
+        <a-col :span="8" style="cursor: pointer;">
+          <a-tooltip placement="top">
             <img src="@/../static/img/moon.svg" width="50" height="50" @click="setMenuTheme('dark')"/>
             <a-icon type="check" :class="checkClass" v-if="menuTheme === 'dark'"/>
-          </div>
+            <template slot="title">
+              暗色菜单风格
+            </template>
+          </a-tooltip>
         </a-col>
-        <a-col :span="8">
-          <img src="@/../static/img/sun.svg" width="50" height="50" @click="setMenuTheme('light')"/>
-          <a-icon type="check" :class="checkClass" v-if="menuTheme === 'light'"/>
+        <a-col :span="8" style="cursor: pointer;">
+          <a-tooltip placement="top">
+            <img src="@/../static/img/sun.svg" width="50" height="50" @click="setMenuTheme('light')"/>
+            <a-icon type="check" :class="checkClass" v-if="menuTheme === 'light'"/>
+            <template slot="title">
+              亮色菜单风格
+            </template>
+          </a-tooltip>
         </a-col>
       </a-row>
       <br>
       <h3>主题颜色</h3>
       <a-row style="height:20px;">
         <a-col class="color-class" v-for="(item,index) in colorList" :key="index" :span="3" :offset="1"
-               @click="setMenuColor('light')" :style="{ backgroundColor : item.color }">
-          <a-icon type="check" :class="checkColor"/>
+               @click="setMenuColor('light')" :style="{ backgroundColor : item.color,cursor: pointer }">
+          <a-tooltip placement="top">
+            <a-icon type="check" :class="checkColor"/>
+            <template slot="title">
+              {{item.name}}
+            </template>
+          </a-tooltip>
         </a-col>
       </a-row>
       <a-divider/>
       <h3>导航模式</h3>
       <a-row>
-        <a-col :span="8">
-          <img src="@/../static/img/sider.svg" width="50" height="50" @click="setMenuModel('inline')"/>
-          <a-icon type="check" :class="checkClass" v-if="menuModel === 'inline'"/>
+        <a-col :span="8" style="cursor: pointer;">
+          <a-tooltip placement="top">
+            <img src="@/../static/img/sider.svg" width="50" height="50" @click="setMenuModel('inline')"/>
+            <a-icon type="check" :class="checkClass" v-if="menuModel === 'inline'"/>
+            <template slot="title">
+              侧边导航栏
+            </template>
+          </a-tooltip>
         </a-col>
-        <a-col :span="8">
-          <img src="@/../static/img/header.svg" width="50" height="50" @click="setMenuModel('horizontal')"/>
-          <a-icon type="check" :class="checkClass" v-if="menuModel === 'horizontal'"/>
+        <a-col :span="8" style="cursor: pointer;">
+          <a-tooltip placement="top">
+            <img src="@/../static/img/header.svg" width="50" height="50" @click="setMenuModel('horizontal')"/>
+            <a-icon type="check" :class="checkClass" v-if="menuModel === 'horizontal'"/>
+            <template slot="title">
+              侧边导航栏
+            </template>
+          </a-tooltip>
         </a-col>
       </a-row>
     </a-drawer>
@@ -140,6 +163,7 @@
     font-size: 14px;
     font-weight: bold;
     border-color: transparent;
+    cursor: pointer;
   }
 
   .color-class {

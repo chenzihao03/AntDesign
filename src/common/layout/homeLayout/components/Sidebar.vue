@@ -10,7 +10,7 @@
       <a-col :span="siderCollapsed ? 13 : 5">
         <img src="@/../static/logo.png" width="40" height="40">
       </a-col>
-      <a-col :span="17" v-if="!siderCollapsed">
+      <a-col :span="14" v-if="!siderCollapsed">
         <h1 class="log-class" :style="{color: menuTheme === 'dark' ? '#FFFFFF' : '#000000'}">制造执行系统</h1>
       </a-col>
     </a-row>
@@ -23,7 +23,7 @@
       :default-open-keys="[this.$route.matched[0].path]"
       :style="{color: menuTheme === 'dark' ? '#FFFFFF' : '#000000'}">
       <template v-for="item in routes" v-if="!item.hidden">
-        <a-menu-item v-if="!item.children" :key="item.path">
+        <a-menu-item v-if="!item.children" :key="item.path" >
           <a-icon :type="item.meta.icon"/>
           <span>{{item.meta.title}}</span>
         </a-menu-item>
@@ -52,7 +52,16 @@
     },
     methods: {
       toRouter(item) {
-        this.$router.push(item.key);
+        if (item.key == "/screen/board") {
+          let routeData = this.$router.resolve({
+            path: item.key,
+          });
+          var win = window.open(routeData.href, '_blank');
+          win.document.title = "标题";
+          win.focus();
+        } else {
+          this.$router.push(item.key);
+        }
       }
     },
     computed: {

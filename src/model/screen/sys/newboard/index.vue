@@ -1,28 +1,21 @@
 <template>
-  <!--  <a-table-->
-  <!--    :columns="columns"-->
-  <!--    :dataSource="data"-->
-  <!--    :pagination="pagination"-->
-  <!--    :loading="loading">-->
-  <!--    <template slot="name" slot-scope="name">-->
-  <!--      {{name.first}} {{name.last}}-->
-  <!--    </template>-->
-  <!--  </a-table>-->
-  <div class="dragger-class">
-    <vue-draggable-resizable
-      class-name="my-class"
-      class-name-active="my-active-class"
-      :w="width"
-      :h="height"
-      @resizing="onResize">
-      <div id="myChart" :style="{width:width + 'px',height: height + 'px'}">
-      </div>
-    </vue-draggable-resizable>
-  </div>
+  <a-spin size="large" :delay="50000" spinning="" class="spin-class">
+    <div class="dragger-class">
+      <vue-draggable-resizable
+        class-name="my-class"
+        class-name-active="my-active-class"
+        :w="width"
+        :h="height"
+        @resizing="onResize">
+        <div id="myChart" :style="{width:width + 'px',height: height + 'px'}">
+        </div>
+      </vue-draggable-resizable>
+    </div>
+  </a-spin>
 </template>
 <script>
   export default {
-    name: 'FuncFormsBase',
+    name: 'newboard',
     data() {
       return {
         msg: 'Welcome to Your Vue.js App',
@@ -68,6 +61,12 @@
   }
 </script>
 <style>
+  .spin-class {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
   .my-active-class {
     border: 1px dashed #09f;
     background-color: rgba(115, 170, 229, .5);

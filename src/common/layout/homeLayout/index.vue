@@ -15,7 +15,7 @@
 </template>
 
 <script>
-  import {Navbar, Sidebar, AppMain, SidebarTop} from './components'
+  import {Navbar, Sidebar, AppMain, SidebarTop} from '@/common/layout/homeLayout/components'
 
   export default {
     components: {

@@ -68,7 +68,16 @@
     },
     methods: {
       toRouter(item) {
-        this.$router.push(item.key);
+        if (item.key == "/screen/board") {
+          let routeData = this.$router.resolve({
+            path: item.key,
+          });
+          var win = window.open(routeData.href, '_blank');
+          win.document.title = "标题";
+          win.focus();
+        } else {
+          this.$router.push(item.key);
+        }
       },
       handleMenuClick(e) {
         if (e.key == "onChange") {
