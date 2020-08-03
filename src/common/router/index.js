@@ -48,10 +48,10 @@ export const constantRoutes = [{
   name: '大屏管理',
   hidden: true,
   component: ScreenLayout,
-  redirect: '/board/board',
+  redirect: '/board/home',
   meta: {title: '大屏管理', icon: 'area-char'},
   children: [{
-    path: 'board',
+    path: 'home',
     name: '大屏管理',
     component: () => import('@/model/screen/sys/home'),
     meta: {title: '大屏管理'}
@@ -61,6 +61,11 @@ export const constantRoutes = [{
   name: '新建大屏',
   hidden: true,
   component: () => import('@/model/screen/sys/newboard')
+}, {
+  path: '/boards',
+  name: '大屏设计',
+  hidden: true,
+  component: () => import('@/model/screen/sys/board')
 }, {
   path: '/my',
   name: '我的',

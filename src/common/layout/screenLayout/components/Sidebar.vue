@@ -17,7 +17,7 @@
       :default-open-keys="[this.$route.matched[0].path]"
       @click="toRouter">
       <template v-for="item in routes" v-if="item.path === '/board'">
-        <a-menu-item v-for="item1 in item.children" :key="item1.path" class="menu-item">
+        <a-menu-item v-for="item1 in item.children" :key="item1.path" class="menu-item" v-if="!item1.hidden">
           <a-icon type="file-done" :style="{ fontSize: '16px', color: 'white' }"/>
           <span style="color: white;">{{item1.meta.title}}</span>
         </a-menu-item>

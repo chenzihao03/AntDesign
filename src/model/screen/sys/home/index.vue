@@ -284,7 +284,7 @@
       },
       addNew() {
         let routeData = this.$router.resolve({
-          path: "/newBoard",
+          path: "/boards",
           // query: {
           //   name: 'lei',
           //   age: 18,

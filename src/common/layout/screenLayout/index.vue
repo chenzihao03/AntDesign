@@ -16,7 +16,6 @@
       Navbar,
       Sidebar,
       AppMain,
-      Footer,
     },
     computed: {
       menuModel() {
