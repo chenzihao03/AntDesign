@@ -6,12 +6,12 @@
     :h="height"
     @resizing="onResize"
   >
-    <div id="myChart" :style="{width:width + 'px',height: height + 'px'}"></div>
+    <div id="BarChart" :style="{width:width + 'px',height: height + 'px'}"></div>
   </vue-draggable-resizable>
 </template>
 <script>
 export default {
-  name: "newboard",
+  name: "BarChart",
   data() {
     return {
       msg: "Welcome to Your Vue.js App",
@@ -27,23 +27,24 @@ export default {
   methods: {
     drawLine() {
       let echarts = require("echarts");
-      let chartDiv = document.getElementById("myChart");
-      let myChart = echarts.init(chartDiv);
-      myChart.resize();
-      myChart.setOption({
+      let BarDiv = document.getElementById("BarChart");
+      let BarChart = echarts.init(BarDiv);
+      BarChart.resize();
+      BarChart.setOption({
         // title: {
         //   text: 'ECharts 入门示例'
         // },
-        tooltip: {},
         xAxis: {
-          data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"],
+          type: "category",
+          data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
         },
-        yAxis: {},
+        yAxis: {
+          type: "value",
+        },
         series: [
           {
-            name: "销量",
+            data: [120, 200, 150, 80, 70, 110, 130],
             type: "bar",
-            data: [5, 20, 36, 10, 10, 20],
           },
         ],
       });
@@ -76,12 +77,5 @@ export default {
   border: 1px solid #09f;
   border-radius: 100% !important;
   background-color: #09f !important;
-}
-
-.dragger-class {
-  height: 100%;
-  width: 100%;
-  position: relative;
-  /*background: linear-gradient(-90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / 10px 10px, linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / 10px 10px;*/
 }
 </style>
