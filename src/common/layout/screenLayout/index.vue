@@ -15,7 +15,7 @@
     components: {
       Navbar,
       Sidebar,
-      AppMain,
+      AppMain,Q
     },
     computed: {
       menuModel() {

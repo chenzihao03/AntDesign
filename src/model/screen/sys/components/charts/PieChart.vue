@@ -1,37 +1,35 @@
 <template>
-  <vue-draggable-resizable
-    class-name="my-class"
-    class-name-active="my-active-class"
-    :w="width"
-    :h="height"
-    @resizing="onResize"
-    style
-  >
-    <div id="PieChart" :style="{width:width + 'px',height: height + 'px'}"></div>
-  </vue-draggable-resizable>
+  <div id="PieChart" :style="{width:width + 'px',height: height + 'px'}"></div>
 </template>
 <script>
 export default {
   name: "PieChart",
+  props: {
+    width: {
+      type: Number,
+      default: 0,
+    },
+    height: {
+      type: Number,
+      default: 0,
+    },
+  },
   data() {
-    return {
-      msg: "Welcome to Your Vue.js App",
-      width: 300,
-      height: 300,
-      x: "1000",
-      y: "100",
-    };
+    return {};
   },
   mounted() {
+    this.drawLine();
+  },
+  updated() {
     this.drawLine();
   },
   methods: {
     drawLine() {
       let echarts = require("echarts");
-      let chartDiv = document.getElementById("PieChart");
-      let myChart = echarts.init(chartDiv);
-      myChart.resize();
-      myChart.setOption({
+      let PieDiv = document.getElementById("PieChart");
+      let PieChart = echarts.init(PieDiv);
+      PieChart.resize();
+      PieChart.setOption({
         title: {
           text: "某站点用户访问来源",
           subtext: "纯属虚构",
@@ -70,33 +68,6 @@ export default {
         ],
       });
     },
-    onResize(x, y, width, height) {
-      this.x = x;
-      this.y = y;
-      this.width = width;
-      this.height = height;
-      this.drawLine();
-    },
   },
 };
 </script>
-<style>
-.spin-class {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.my-active-class {
-  border: 1px dashed #09f;
-  background-color: rgba(115, 170, 229, 0.5);
-}
-
-.handle {
-  width: 10px;
-  height: 10px;
-  border: 1px solid #09f;
-  border-radius: 100% !important;
-  background-color: #09f !important;
-}
-</style>

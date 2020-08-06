@@ -19,12 +19,15 @@
         <p class="title">图层</p>
       </a-layout-sider>
       <a-layout-content class="main-class">
-        <component
-          v-for="(item,index) in comName"
-          :is="item.name"
-          :key="index"
-          @func="getContent(index)"
-        ></component>
+        <div class="container">
+          <!-- <component
+            v-for="(item,index) in comName"
+            :is="item.name"
+            :key="index"
+            @func="getContent(index)"
+          ></component>-->
+          <draggable v-for="(item,index) in comName" :key="index" :comName="comName"></draggable>
+        </div>
       </a-layout-content>
       <a-layout-sider class="right-class">
         <p class="title">操作</p>
@@ -33,12 +36,10 @@
   </a-layout>
 </template>
 <script>
-import { BarChart, LineChart, PieChart } from "@/model/screen/chart";
+import Draggable from "@/model/screen/sys/components";
 export default {
   components: {
-    BarChart,
-    LineChart,
-    PieChart,
+    Draggable,
   },
   data() {
     return {
@@ -63,7 +64,7 @@ export default {
               icon: "pie-chart",
             },
             {
-              name: "radar",
+              name: "RadarChart",
               title: "雷达图",
               icon: "radar-chart",
             },
@@ -159,7 +160,30 @@ export default {
 }
 
 .main-class {
-  background: url("../../../../assets/boardbg.png") repeat;
+  background: url("../../../../assets/img/boardbg.png") repeat;
   height: 100%;
+  padding: 60px 0 0 0;
+  width: 100%;
+  overflow: hidden;
+}
+.container {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  position: relative;
+  transform: scale(0.721354, 0.721354);
+  width: 1926px;
+  height: 1077px;
+  background: url("../../../../assets/img/map_bg.jpg") no-repeat;
+  background-position: 0% 0%;
+  background-size: 100% 100%;
+  background-repeat: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: red;
 }
 </style>
