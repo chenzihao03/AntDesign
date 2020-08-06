@@ -17,38 +17,11 @@
     <div class="dragger-left" v-if="lineShow"></div>
     <div class="dragger-top" v-if="lineShow"></div>
     <div class="dragger-label" v-if="lineShow">{{x + "," + y}}</div>
-    <!-- 传入对应组件 -->
-    <component
-      v-for="(item,index) in comName"
-      @func="getContent(index)"
-      :is="item.name"
-      :key="index"
-      :width="width"
-      :height="height"
-    ></component>
   </vue-draggable-resizable>
 </template>
 <script>
-import {
-  BarChart,
-  LineChart,
-  PieChart,
-  RadarChart,
-} from "@/model/screen/sys/components/charts";
 export default {
-  name: "Draggable",
-  components: {
-    BarChart,
-    LineChart,
-    PieChart,
-    RadarChart,
-  },
-  props: {
-    comName: {
-      type: Array,
-      default: [],
-    },
-  },
+  name: "ScreenDraggable",
   data() {
     return {
       width: 300,

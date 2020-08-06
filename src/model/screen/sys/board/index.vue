@@ -20,13 +20,12 @@
       </a-layout-sider>
       <a-layout-content class="main-class">
         <div class="container">
-          <!-- <component
+          <component
             v-for="(item,index) in comName"
             :is="item.name"
             :key="index"
             @func="getContent(index)"
-          ></component>-->
-          <draggable v-for="(item,index) in comName" :key="index" :comName="comName"></draggable>
+          ></component>
         </div>
       </a-layout-content>
       <a-layout-sider class="right-class">
@@ -36,10 +35,18 @@
   </a-layout>
 </template>
 <script>
-import Draggable from "@/model/screen/sys/components";
+import {
+  BarChart,
+  LineChart,
+  PieChart,
+  RadarChart,
+} from "@/model/screen/sys/components/charts";
 export default {
   components: {
-    Draggable,
+    BarChart,
+    LineChart,
+    PieChart,
+    RadarChart,
   },
   data() {
     return {
