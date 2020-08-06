@@ -9,32 +9,36 @@
 </template>
 
 <script>
-  import {Navbar, Sidebar, AppMain, Footer} from '@/common/layout/screenLayout/components'
+import {
+  Navbar,
+  Sidebar,
+  AppMain,
+  Footer,
+} from "@/common/layout/screenLayout/components";
 
-  export default {
-    components: {
-      Navbar,
-      Sidebar,
-      AppMain,Q
+export default {
+  components: {
+    Navbar,
+    Sidebar,
+    AppMain,
+  },
+  computed: {
+    menuModel() {
+      return this.$store.state.menuModel;
     },
-    computed: {
-      menuModel() {
-        return this.$store.state.menuModel
-      },
-      siderCollapsed() {
-        return this.$store.state.siderCollapsed
-      }
-    }
-  };
+    siderCollapsed() {
+      return this.$store.state.siderCollapsed;
+    },
+  },
+};
 </script>
 
 <style scoped>
-  * {
-    background-color: #171b22;
-  }
+* {
+  background-color: #171b22;
+}
 
-  .container-class {
-    height: 100%;
-  }
-
+.container-class {
+  height: 100%;
+}
 </style>
