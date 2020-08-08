@@ -1,5 +1,12 @@
 <template>
   <div class="container">
+    <pagination
+      :pageSize="pageSize"
+      :currentPage="currentPage"
+      :total="cardList.length"
+      @setCurrent="setCurrent"
+      class="footer-class"
+    ></pagination>
     <div class="card-add-class card-class" @click="addNew">
       <div style="padding-top: 20px;">
         <a-icon type="plus" class="add-class" />
@@ -33,13 +40,6 @@
         </div>
       </div>
     </div>
-    <pagination
-      :pageSize="pageSize"
-      :currentPage="currentPage"
-      :total="cardList.length"
-      @setCurrent="setCurrent"
-      class="footer-class"
-    ></pagination>
   </div>
 </template>
 <script>
@@ -403,9 +403,6 @@ export default {
 }
 
 .footer-class {
-  left: 45%;
-  bottom: 10px;
-  position: absolute;
   background-color: #171b22;
 }
 

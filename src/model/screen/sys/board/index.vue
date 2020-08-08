@@ -15,19 +15,24 @@
       </a-menu>
     </a-layout-header>
     <a-layout>
+      <!-- 左侧操作栏 -->
       <a-layout-sider class="left-class">
         <p class="title">图层</p>
       </a-layout-sider>
-      <a-layout-content class="main-class">
-        <div class="container">
-          <component
-            v-for="(item,index) in comName"
-            :is="item.name"
-            :key="index"
-            @func="getContent(index)"
-          ></component>
-        </div>
+      <!-- 中间图形展示层 -->
+      <a-layout-content class="middle">
+        <a-layout class="wrapper">
+          <a-layout class="content">
+            <component
+              v-for="(item,index) in comName"
+              :is="item.name"
+              :key="index"
+              @func="getContent(index)"
+            ></component>
+          </a-layout>
+        </a-layout>
       </a-layout-content>
+      <!-- 右侧操作栏 -->
       <a-layout-sider class="right-class">
         <p class="title">操作</p>
       </a-layout-sider>
@@ -41,12 +46,14 @@ import {
   PieChart,
   RadarChart,
 } from "@/model/screen/sys/components/charts";
+import { Texts } from "@/model/screen/sys/components/texts";
 export default {
   components: {
     BarChart,
     LineChart,
     PieChart,
     RadarChart,
+    Texts,
   },
   data() {
     return {
@@ -80,6 +87,13 @@ export default {
         {
           icon: "highlight",
           theme: "outlined",
+          children: [
+            {
+              name: "texts",
+              title: "文本",
+              icon: "font-size",
+            },
+          ],
         },
         {
           icon: "picture",
@@ -166,31 +180,28 @@ export default {
   }
 }
 
-.main-class {
-  background: url("../../../../assets/img/boardbg.png") repeat;
-  height: 100%;
-  padding: 60px 0 0 0;
-  width: 100%;
-  overflow: hidden;
-}
-.container {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-transform-origin: 0 0;
-  transform-origin: 0 0;
+.middle {
+  background-color: #2a2d32;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
   position: relative;
-  transform: scale(0.721354, 0.721354);
-  width: 1926px;
-  height: 1077px;
-  background: url("../../../../assets/img/map_bg.jpg") no-repeat;
-  background-position: 0% 0%;
-  background-size: 100% 100%;
-  background-repeat: initial;
-  background-attachment: initial;
-  background-origin: initial;
-  background-clip: initial;
-  background-color: red;
+  height: 100%;
+  overflow: auto;
+  .wrapper {
+    width: 100%;
+    height: 100%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 60px 0 60px 0;
+    background: url("../../../../assets/img/boardbg.png") repeat;
+    .content {
+      width: 100%;
+      height: 100%;
+      background: url("../../../../assets/img/map_bg.jpg") no-repeat;
+      background-position: 0% 0%;
+      background-size: 100% 100%;
+    }
+  }
 }
 </style>
