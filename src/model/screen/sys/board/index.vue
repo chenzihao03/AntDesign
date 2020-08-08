@@ -45,8 +45,11 @@ import {
   LineChart,
   PieChart,
   RadarChart,
+  DotChart,
+  FunnelChart,
 } from "@/model/screen/sys/components/charts";
 import { Texts } from "@/model/screen/sys/components/texts";
+import { Dashboard } from "@/model/screen/sys/components/dashboard";
 export default {
   components: {
     BarChart,
@@ -54,6 +57,9 @@ export default {
     PieChart,
     RadarChart,
     Texts,
+    DotChart,
+    FunnelChart,
+    Dashboard,
   },
   data() {
     return {
@@ -78,9 +84,19 @@ export default {
               icon: "pie-chart",
             },
             {
+              name: "DotChart",
+              title: "散点图",
+              icon: "dot-chart",
+            },
+            {
               name: "RadarChart",
               title: "雷达图",
               icon: "radar-chart",
+            },
+            {
+              name: "FunnelChart",
+              title: "漏斗图",
+              icon: "funnel-plot",
             },
           ],
         },
@@ -100,7 +116,31 @@ export default {
           theme: "outlined",
         },
         {
+          icon: "dashboard",
+          theme: "outlined",
+          children: [
+            {
+              name: "Dashboard",
+              title: "仪表盘",
+              icon: "dashboard",
+            },
+            {
+              name: "reload",
+              title: "环形图",
+              icon: "reload",
+            },
+          ],
+        },
+        {
           icon: "table",
+          theme: "outlined",
+        },
+        {
+          icon: "eye",
+          theme: "outlined",
+        },
+        {
+          icon: "file-done",
           theme: "outlined",
         },
       ],
