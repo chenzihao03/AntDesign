@@ -51,9 +51,7 @@ export default {
         toolbox: {
           show: true,
           feature: {
-            mark: { show: true },
-            restore: { show: true },
-            saveAsImage: { show: true },
+            mark: { show: true }
           },
         },
         series: [

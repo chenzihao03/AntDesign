@@ -5,11 +5,11 @@
       <a-menu theme="dark" mode="horizontal" class="menu-class" @click="tChoose">
         <a-sub-menu v-for="(item,index) in menuList" :key="index">
           <span slot="title" class="submenu-title-wrapper">
-            <a-icon :type="item.icon" :style="{fontSize:'20px'}" :theme="item.theme" />
+            <a-icon :type="item.icon" :style="{fontSize:'20px'}" :theme="item.theme"/>
           </span>
           <a-menu-item v-for="item1 in item.children" :key="item1.name">
-            <a-icon :type="item1.icon" :style="{fontSize:'20px'}" />
-            {{item1.title}}
+            <a-icon :type="item1.icon" :style="{fontSize:'20px'}"/>
+            {{ item1.title }}
           </a-menu-item>
         </a-sub-menu>
       </a-menu>
@@ -27,8 +27,8 @@
               v-for="(item,index) in comName"
               :is="item.name"
               :key="index"
-              @func="getContent(index)"
-            ></component>
+              @func="getContent(index)">
+            </component>
           </a-layout>
         </a-layout>
       </a-layout-content>
@@ -48,8 +48,9 @@ import {
   DotChart,
   FunnelChart,
 } from "@/model/screen/sys/components/charts";
-import { Texts } from "@/model/screen/sys/components/texts";
-import { Dashboard } from "@/model/screen/sys/components/dashboard";
+import {Texts} from "@/model/screen/sys/components/texts";
+import {Dashboard} from "@/model/screen/sys/components/dashboard";
+
 export default {
   components: {
     BarChart,
@@ -147,14 +148,16 @@ export default {
       comName: [],
     };
   },
-  mounted() {},
+  mounted() {
+  },
   methods: {
     tChoose(val) {
       this.comName.push({
         name: val.key,
       });
     },
-    getContent(index) {},
+    getContent(index) {
+    },
   },
 };
 </script>
@@ -228,6 +231,7 @@ export default {
   position: relative;
   height: 100%;
   overflow: auto;
+
   .wrapper {
     width: 100%;
     height: 100%;
@@ -235,6 +239,7 @@ export default {
     box-sizing: border-box;
     padding: 60px 0 60px 0;
     background: url("../../../../assets/img/boardbg.png") repeat;
+
     .content {
       width: 100%;
       height: 100%;

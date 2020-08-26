@@ -12,12 +12,14 @@
     @dragging="tDragging"
     @activated="tActivated"
     @deactivated="tDeactivated"
-    style="position:absolute;"
-  >
+    style="position:absolute;">
     <div class="dragger-left" v-if="lineShow"></div>
     <div class="dragger-top" v-if="lineShow"></div>
-    <div class="dragger-label" v-if="lineShow">{{x + "," + y}}</div>
-    <div id="BarChart" :style="{width:width + 'px',height: height + 'px'}"></div>
+    <div class="dragger-label" v-if="lineShow">{{ x + "," + y }}</div>
+    <div id="BarChart"
+         @contextmenu.prevent="onContextmenu"
+         :style="{width:width + 'px',height: height + 'px'}">
+    </div>
   </vue-draggable-resizable>
 </template>
 <script>
@@ -39,6 +41,32 @@ export default {
     this.drawLine();
   },
   methods: {
+    onContextmenu(event) {
+      this.$contextmenu({
+        items: [{
+          label: "删除图层",
+          onClick: () => {
+            this.message = "删除图层";
+            console.log("删除图层");
+          },
+          icon: "el-icon-close"
+        }, {
+          label: "复制图层",
+          onClick: () => {
+            this.message = "复制图层";
+            console.log("复制图层");
+          },
+          icon: "el-icon-document-copy"
+        }],
+        event,
+        //x: event.clientX,
+        //y: event.clientY,
+        customClass: "class-a",
+        zIndex: 3,
+        minWidth: 150
+      });
+      return false;
+    },
     drawLine() {
       let echarts = require("echarts");
       let BarDiv = document.getElementById("BarChart");
