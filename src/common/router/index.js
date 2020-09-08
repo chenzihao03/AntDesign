@@ -10,10 +10,17 @@ Vue.use(Router);
 
 export const constantRoutes = [{
   path: '/',
-  name: 'home',
+  name: '主页',
   component: HomeLayout,
   hidden: true,
-  meta: {title: '作业管理', icon: 'slack'},
+  redirect: '/home',
+  meta: {title: '主页', icon: 'slack'},
+  children: [{
+    path: 'home',
+    name: '主页',
+    component: () => import('@/model/sys/home'),
+    meta: {title: '主页'}
+  }]
 }, {
   path: '/task',
   name: '作业管理',
