@@ -1,11 +1,25 @@
 <template>
-  <div id="bar"></div>
+  <div :id="divName"></div>
 </template>
 
 <script>
 import { Chart } from "@antv/g2";
 export default {
   name: "MiniBar",
+  props: {
+    divName: {
+      type: String,
+      default: "bar",
+    },
+    height: {
+      type: Number,
+      default: 90,
+    },
+    showAxis: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data() {
     return {
       data: [
@@ -26,9 +40,9 @@ export default {
   methods: {
     cc() {
       const chart = new Chart({
-        container: "bar",
+        container: this.divName,
         autoFit: true,
-        height: 90,
+        height: this.height,
       });
 
       chart.data(this.data);
@@ -41,7 +55,7 @@ export default {
       });
       chart.interaction("active-region");
       chart.interval().position("year*sales");
-      chart.axis(false);
+      chart.axis(this.showAxis);
       chart.render();
     },
   },
